@@ -17,6 +17,7 @@ getOuterCircleLengthByLayer(LayerNumber, Length)
 
 getRoomCountByLayer(1, RoomCount)
     :- cFirstLayerRoomNumber(RoomCount)
+     , !
      .
 getRoomCountByLayer(LayerNumber, RoomCount)
     :- PrevLayerNumber is LayerNumber - 1
@@ -24,7 +25,7 @@ getRoomCountByLayer(LayerNumber, RoomCount)
      , getOuterCircleLengthByLayer(LayerNumber, Length)
      , UpperWallLength is Length / PrevLayerRoomCount
      , cMaxUpperWallLength(MaxUpperWallLength)
-     , UpperWallLength <= MaxUpperWallLength
+     , UpperWallLength =< MaxUpperWallLength
      , !
      , RoomCount is PrevLayerRoomCount
      .
